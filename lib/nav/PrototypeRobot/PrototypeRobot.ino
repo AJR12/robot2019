@@ -18,45 +18,18 @@ Navigate myNavigate(myRobot, sensors);
 
 
 void setup() {
-  Serial.begin(9600);
-   imuSensor.bno.setExtCrystalUse(true);;
+  Serial.begin(9600);  
+   imuSensor.bno.setExtCrystalUse(true);
+   imuSensor.bno.begin();
 }
 
-void loop() {
-
-  
+void loop() { 
   
   //myNavigate.moveAll();
   //delay(2000);
-
+  
   //sensors.printAll();
 
   imuSensor.getInfo();
 
-
-  //if (st < 2) {
-  //    myRobot.moveInCircular(5) ; // take time delay
-  //    myRobot.stopp();
-  //    st++;
-  //  }
-
-
-  //
-  //      myRobot.forwards(100);
-  //      delay(2000);
-  //  myRobot.right(100);
-  //  delay(2000);
-  //    myRobot.backwards(100);
-  //    delay(2000);
-  //  myRobot.left(100);
-  //  delay(2000);
-  //  myRobot.rotateLeft(100);
-  //  delay(2000);
-  //  myRobot.rotateRight(100);
-  //  delay(2000);
-  //
-  //  myRobot.haults();
-  //  delay(2000);
-
-  //Serial.println("sf");
 }

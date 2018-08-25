@@ -5,21 +5,20 @@
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
 #define BNO055_SAMPLERATE_DELAY_MS (100)
-#define BNO055_SAMPLERATE_DELAY_MS (100)
 
-Imu::Imu(){}
+
+Imu::Imu() {}
 
 void Imu::getInfo()
 {
-  sensors_event_t event;
-  bno.getEvent(&event);
-  Serial.print(F("Orientation: "));
-  Serial.print((float)event.orientation.x);
-  Serial.print(F(" "));
-  Serial.print((float)event.orientation.y);
-  Serial.print(F(" "));
-  Serial.print((float)event.orientation.z);
-  Serial.println(F(""));
-
+  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
+  Serial.print("X: ");
+  Serial.print(euler.x());
+  Serial.print(" Y: ");
+  Serial.print(euler.y());
+  Serial.print(" Z: ");
+  Serial.print(euler.z());
+  Serial.print("\t\t");
+  Serial.println();
   delay(BNO055_SAMPLERATE_DELAY_MS);
 }
