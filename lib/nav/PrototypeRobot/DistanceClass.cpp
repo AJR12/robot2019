@@ -45,7 +45,7 @@ long r = rightSensor.getDistance();
 long l = leftSensor.getDistance();
 Serial.print("front :" + f);
 Serial.print(" Back :" + b);
-Serial.println(" Right :" + r);
-Serial.println(" Left :" + l);
+Serial.print(" Right :" + r);
+Serial.print(" Left :" + l);
 
 }
