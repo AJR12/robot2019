@@ -182,13 +182,3 @@ void robot::stopp() {
   _M3.stopp();
   _M4.stopp();
 }
-void robot::rightWheels(int pwm1)
-{
- _M1.forward(pwm1); 
- _M4.forward(pwm1);
-}
-void robot::leftWheels(int pwm1)
-{
-  _M2.forward(pwm1);
-  _M3.forward(pwm1);
-}

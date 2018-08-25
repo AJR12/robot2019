@@ -14,13 +14,13 @@ class robot
     void stopp();
     void right(int);
     void moveInCircular(int );
+
     void rotateRight(int);
+
     void rotateLeft(int);
     void left(int);
     void diagonalLeftUp(int);
     void diagonalRightUp(int);
-    void rightWheels(int);
-    void leftWheels(int);
   private:
     moveInCircular1 (int, int);
     Motor _M1;

@@ -11,7 +11,7 @@ Motor motor4(6, 38, 36);
 DistanceClass sensors(31, 33, 41, 39, 37, 35, 42, 43);
 Imu imuSensor;
 robot myRobot(motor1, motor2, motor3, motor4, 255); //robot(motor1, motor2, motor3, motor4, MaxSpeed)
-//Navigate myNavigate(myRobot, sensors);
+Navigate myNavigate(myRobot, sensors);
 
 
 void setup() {
