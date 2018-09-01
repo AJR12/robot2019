@@ -14,6 +14,11 @@ void Imu::getInfo()
   imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
   Serial.print("X: ");
   Serial.print(euler.x());
+  Serial.print(" Y: ");
+  Serial.print(euler.y());
+  Serial.print(" Z: ");
+  Serial.print(euler.z());
+  Serial.print("\t\t");
   Serial.println();
   delay(BNO055_SAMPLERATE_DELAY_MS);
 }
