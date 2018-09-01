@@ -10,6 +10,7 @@ class Imu
 {
   public:
     Imu();
+    float getPhi();
     
     void getInfo();
     Adafruit_BNO055 bno = Adafruit_BNO055(55);
