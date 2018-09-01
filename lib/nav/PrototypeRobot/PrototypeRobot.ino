@@ -37,22 +37,22 @@ void loop() {
 
   //sensors.printAll();
 
-  imuSensor.getInfo();
-  Serial.println(imuSensor.getPhi());
-  float phi = imuSensor.getPhi();
-  myNavigate.moveFwd();
-  //myRobot.forwards(200);
-  display.setTextSize(2);
-  display.setTextColor(WHITE);
-  display.setCursor(0, 0);
-  display.println(phi);
-  display.setCursor(0, 20);
-  display.print(sensors.getDistanceFront());
-  display.setCursor(0, 40);
-  //display.print(x);
-  display.display();
-  //delay(100);
-  display.clearDisplay();
+//  imuSensor.getInfo();
+//  Serial.println(imuSensor.getPhi());
+//  float phi = imuSensor.getPhi();
+ myNavigate.moveFwd();
+//  //myRobot.forwards(200);
+//  display.setTextSize(2);
+//  display.setTextColor(WHITE);
+//  display.setCursor(0, 0);
+//  display.println(phi);
+//  display.setCursor(0, 20);
+//  display.print(sensors.getDistanceFront());
+//  display.setCursor(0, 40);
+//  //display.print(x);
+//  display.display();
+//  //delay(100);
+//  display.clearDisplay();
 
   // Serial.println(phi);
 
