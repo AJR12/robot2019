@@ -17,3 +17,11 @@ void Imu::getInfo()
   Serial.println();
   delay(BNO055_SAMPLERATE_DELAY_MS);
 }
+
+float Imu::getPhi()
+{
+  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
+  float x = 360 - euler.x();
+  delay(BNO055_SAMPLERATE_DELAY_MS);  
+  return x;
+}

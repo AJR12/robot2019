@@ -1,6 +1,6 @@
 #include "Arduino.h"
 #include "robot.h"
-
+#include "Imu.h"
 
 robot::robot(){}
 
@@ -21,10 +21,11 @@ robot::robot(Motor m1, Motor m2, Motor m3, Motor m4, int Max) {
 
 
 void robot::forwards(int pwm) {
+  _M4.forward(pwm);
   _M1.forward(pwm);
   _M2.forward(pwm);
   _M3.forward(pwm);
-  _M4.forward(pwm);
+  
 }
 
 
