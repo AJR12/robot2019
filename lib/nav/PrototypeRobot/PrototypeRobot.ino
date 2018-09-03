@@ -20,11 +20,13 @@ robot myRobot(motor1, motor2, motor3, motor4, 255); //robot(motor1, motor2, moto
 Navigate myNavigate(myRobot, sensors, imuSensor);
 
 
+
 void setup() {
   Serial.begin(9600);
   imuSensor.bno.setExtCrystalUse(true);
   imuSensor.bno.begin();
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  display.clearDisplay();
   delay(2000);
 
 }

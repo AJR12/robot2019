@@ -22,7 +22,7 @@ class Navigate
       Imu imuSensor;
       int counter = 1;
       float phi;
-      int a;
+      int a = 0;
       int c;
       int d;
       
