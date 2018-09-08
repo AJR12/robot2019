@@ -94,7 +94,7 @@ void robot::align(int a) {
 
 
 
-void robot::forwards(int a, int pwm) {
+void robot::forwards(int pwm, int a) {
 
 
   float phi = imuSensor.getPhi();

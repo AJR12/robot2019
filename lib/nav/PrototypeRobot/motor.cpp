@@ -4,7 +4,7 @@
 Motor::Motor(){}
 
 Motor::Motor(int pwm, int forwardPin, int backwardPin){
-  pinMode(pwm,OUTPUT);
+  pinMode(pwmPin,OUTPUT);
   pinMode(forwardPin,OUTPUT);
   pinMode(backwardPin,OUTPUT);
   pwmPin = pwm;

@@ -12,7 +12,6 @@ Imu::Imu() {}
 void Imu::getInfo()
 {
   imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-  
   delay(BNO055_SAMPLERATE_DELAY_MS);
 }
 
@@ -20,15 +19,10 @@ float Imu::getPhi()
 {
   imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
   float x = 360 - euler.x();
-  delay(BNO055_SAMPLERATE_DELAY_MS);
-  Serial.print("In IMU x =");
-  Serial.println(x);
+  if (x == 360.00){
+    x=0;
+  }
+  delay(BNO055_SAMPLERATE_DELAY_MS);  
   return x;
 }
 
-float Imu::getAngle()
-{
-  sensors_event_t event;
-  bno.getEvent(&event);
-  return (event.orientation.x);
-}
