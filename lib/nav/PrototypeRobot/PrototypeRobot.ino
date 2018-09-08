@@ -30,8 +30,7 @@ void setup() {
   imuSensor.bno.setExtCrystalUse(true);
   imuSensor.bno.begin();
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-  display.clearDisplay();
-  display.display();
+
   Serial.println("VL53L1X Qwiic Test");
 
   if (distanceSensor.begin() == false)
@@ -45,6 +44,17 @@ void setup() {
 
 void loop() {
 
+  display.clearDisplay();
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  display.setCursor(0,0);
+  display.print("Hello John");  
+  display.setCursor(0,20);
+  display.print(imuSensor.getPhi());
+  display.setCursor(0,40);
+  display.print(distanceSensor.getDistance());
+  display.display();
+  
   //  myRobot.align(0);
   //  Serial.print("level =");
   //  Serial.println(1);
@@ -101,6 +111,7 @@ void loop() {
   Serial.println(imuSensor.getPhi());
   Serial.print("distance=");
   Serial.println(distance);
+  
   //  float phi = imuSensor.getPhi();
   // myNavigate.moveSquare();
   //  //myRobot.forwards(200);
