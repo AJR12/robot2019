@@ -19,6 +19,10 @@ int DistanceSensor::getDistance() {
   digitalWrite(trigPin, LOW);
   duration = pulseIn(echoPin, HIGH);
   distance = (duration / 2) / 29.1;
+  if (distance < 0)
+  {
+    distance = 60;
+  }
   //Serial.print(distance);
   //Serial.println(" cm"); 
   delay(200);

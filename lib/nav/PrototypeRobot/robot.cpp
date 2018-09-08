@@ -2,30 +2,190 @@
 #include "robot.h"
 #include "Imu.h"
 
-robot::robot(){}
+robot::robot() {}
 
-robot::robot(Motor m1, Motor m2, Motor m3, Motor m4, int Max) {
+robot::robot(Motor m1, Motor m2, Motor m3, Motor m4, int Max, Imu imuSensor ) {
 
   _M1 = m1;
   _M2 = m2;
   _M3 = m3;
   _M4 = m4;
+
+
   if (Max >= 0 && Max <= 255) {
     maxSpeed = Max;
   } else {
     maxSpeed = 0;
   }
-  
-  
+
+
+}
+
+void robot::align(int a) {
+  float phi = imuSensor.getPhi();
+  Serial.print("a =");
+  Serial.println(a);
+  Serial.print("phi =");
+  Serial.println(phi);
+
+  if (a <= 180) { //a <= 180
+
+    Serial.println("test 1 a <= 180");
+
+    if ((phi <= a + 180) && (phi > a)) {    //phi is b/t a and (a+180)
+
+      Serial.println("test 2 phi is b/t a and (a+180)");
+      Serial.print("abs(phi - a)=");
+      Serial.println(abs(phi - a));
+      phi = imuSensor.getPhi();
+      while (phi - a < .1) {
+        Serial.println("test 3 rotateRight to correct");
+        Serial.print("phi =");
+        Serial.println(phi);
+        rotateRight(100);
+        phi = imuSensor.getPhi();
+
+      }
+      stopp();
+      return;
+      Serial.println("test 4 exited rotateRight loop");
+      Serial.print("phi =");
+      Serial.println(phi);
+    } else if ((phi < a) || (phi > a + 180)) {   //phi is < a but > 180
+      Serial.println("test 2 phi is b/t a and (a+180)");
+      Serial.print("phi =");
+      Serial.println(phi);
+      while (phi - a < .1) {
+        Serial.println("test 3 rotating left");
+        Serial.print("phi =");
+        Serial.println(phi);
+        rotateLeft(100);
+        phi = imuSensor.getPhi();
+
+      }
+      Serial.print("phi - a =");
+        Serial.println(phi -a);
+      stopp();
+      return;
+    }
+  } else {    //a > 180
+    if ((phi > a - 180) && (phi < a)) {   //phi < a but > (a-180)
+      while (phi - a < .1) {
+        rotateLeft(100);
+        phi = imuSensor.getPhi();
+
+      }
+      stopp();
+      return;
+    }
+    if ((phi > a) || (phi <= a - 180)) { //phi > a but < (a-180)
+      while (phi - a > .1) {
+        rotateRight(100);
+        phi = imuSensor.getPhi();
+
+      }
+      stopp();
+      return;
+    }
+  }
+  stopp();
+  Serial.println("test 5 stopped. exit align");
 }
 
 
-void robot::forwards(int pwm) {
-  _M4.forward(pwm);
+
+void robot::forwards(int pwm, int a) {
+
+
+  float phi = imuSensor.getPhi();
+  int pwm_up = pwm + 10;
+  int pwm_dwn = pwm - 10;
+
+  Serial.println("test 0 enter forwards function");
+  if (abs(phi - a) > 1) {
+    align(a);
+  }
+
+  Serial.println("test 6 reentered forwards function");
+  Serial.print("a = ");
+  Serial.println(a);
+  Serial.print("phi = ");
+  Serial.println(phi);
+
   _M1.forward(pwm);
   _M2.forward(pwm);
   _M3.forward(pwm);
-  
+  _M4.forward(pwm);
+
+  if (a != 0) {
+
+    while ((phi > a + .2) && (phi < a + 20))
+    {
+      phi = imuSensor.getPhi();
+      _M2.forward(pwm_up);
+      _M3.forward(pwm_up);
+      _M1.forward(pwm_dwn);
+      _M4.forward(pwm_dwn);
+
+      Serial.println("test 5");
+      Serial.print("pwm_up");
+      Serial.println(pwm_up);
+      Serial.print("pwm_dwn");
+      Serial.println(pwm_dwn);
+      Serial.print("phi =");
+      Serial.println(phi);
+
+    }
+    while ((phi < a - .2) && (phi > a - 20))
+    {
+      phi = imuSensor.getPhi();
+      _M2.forward(pwm_dwn);
+      _M3.forward(pwm_dwn);
+      _M1.forward(pwm_up);
+      _M4.forward(pwm_up);
+
+      Serial.println("test 5");
+      Serial.print("pwm_up");
+      Serial.println(pwm_up);
+      Serial.print("pwm_dwn");
+      Serial.println(pwm_dwn);
+      Serial.print("phi =");
+      Serial.println(phi);
+    }
+  } else {
+    while ((phi > a + .2) && (phi < a + 20))
+    {
+      phi = imuSensor.getPhi();
+      _M2.forward(pwm_up);
+      _M3.forward(pwm_up);
+      _M1.forward(pwm_dwn);
+      _M4.forward(pwm_dwn);
+
+      Serial.println("test 5 a = 0; curving left (1 < phi < 20)");
+      Serial.print("Left motors (M2/M3) pwm =");
+      Serial.println(pwm_up);
+      Serial.print("Right motors (M1/M4) pwm =");
+      Serial.println(pwm_dwn);
+      Serial.print("phi =");
+      Serial.println(phi);
+    }
+    while ((phi < 359.8) && (phi > 340))
+    {
+      phi = imuSensor.getPhi();
+      _M2.forward(pwm_dwn);
+      _M3.forward(pwm_dwn);
+      _M1.forward(pwm_up);
+      _M4.forward(pwm_up);
+
+      Serial.println("test 6 a = 0; curving right (340 < phi < 359)");
+      Serial.print("Left motors (M2/M3) pwm =");
+      Serial.println(pwm_dwn);
+      Serial.print("Right motors (M1/M4) pwm =");
+      Serial.println(pwm_up);
+      Serial.print("phi =");
+      Serial.println(phi);
+    }
+  }
 }
 
 
@@ -185,8 +345,8 @@ void robot::stopp() {
 }
 void robot::rightWheels(int pwm1)
 {
- _M1.forward(pwm1); 
- _M4.forward(pwm1);
+  _M1.forward(pwm1);
+  _M4.forward(pwm1);
 }
 void robot::leftWheels(int pwm1)
 {
