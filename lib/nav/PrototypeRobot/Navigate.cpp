@@ -15,7 +15,6 @@ Navigate::Navigate(robot robotic, DistanceClass robSensors, Imu phiSensor) {
 
 }
 
-<<<<<<< HEAD
 void Navigate::moveSquare()
 {
 
@@ -214,10 +213,10 @@ void Navigate::moveSquare()
 //  counter++;
 //
 //}
-=======
+
 void Navigate::moveFwd(int angle,int pwm)
 {
  myRobot.align(angle);
  myRobot.forwards(angle,pwm); 
 }
->>>>>>> 04a5fd011c453fbcf9c88cf6e135ead706ab2953
+
