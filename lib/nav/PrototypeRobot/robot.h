@@ -1,3 +1,4 @@
+
 #ifndef robot_h
 #define robot_h
 #include "Arduino.h"
@@ -8,8 +9,9 @@ class robot
 {
   public:
   robot();
-    robot(Motor motor1, Motor motor2, Motor motor3, Motor motor4, int Max);
-    void forwards(int);
+    robot(Motor motor1, Motor motor2, Motor motor3, Motor motor4, int Max, Imu);
+    void align(int);
+    void forwards(int,int);
     void backwards(int);
     void stopp();
     void right(int);
@@ -27,7 +29,9 @@ class robot
     Motor _M2;
     Motor _M3;
     Motor _M4;
+    Imu imuSensor;
     int maxSpeed;
+    float phi;
 
 
 

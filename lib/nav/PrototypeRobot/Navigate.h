@@ -10,7 +10,7 @@ class Navigate
   public:
        Navigate();
        Navigate(robot,DistanceClass,Imu);
-       void moveFwd();
+       void moveFwd(int angl,int pw);
        void moveTurn();
        void rotateLeft();
 
@@ -19,7 +19,7 @@ class Navigate
   private:
       robot myRobot;
       DistanceClass mySensors;
-      Imu imuSensor;
+      Imu imuSensor;     
       int counter = 1;
       float phi;
       int a = 0;

@@ -13,7 +13,7 @@ DistanceSensor::DistanceSensor(int trig, int echo) {
 
 int DistanceSensor::getDistance() {
   digitalWrite(trigPin, LOW);
-  delayMicroseconds(5);
+  delayMicroseconds(2);
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
@@ -21,7 +21,7 @@ int DistanceSensor::getDistance() {
   distance = (duration / 2) / 29.1;
   //Serial.print(distance);
   //Serial.println(" cm"); 
-  delay(250);
+  delay(200);
   //pulseIn(echoPin, HIGH);
 
   return distance;
