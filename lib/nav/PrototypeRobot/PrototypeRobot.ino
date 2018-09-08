@@ -144,19 +144,4 @@ void loop() {
 
   // Serial.println(phi);
 }
-  
-void PrintOled()
-{
-  display.setTextColor(WHITE);
-  display.setTextSize(2);
-  display.clearDisplay();
-  display.setCursor(0, 0);
-  display.print("Dist:");
-  display.print(distance);
-  display.setCursor(0, 20);
-  display.print("ang:" );
-  display.print(imuSensor.getAngle());
-  display.display();
 
-
-}
