@@ -10,6 +10,7 @@ class Navigate
   public:
        Navigate();
        Navigate(robot,DistanceClass,Imu);
+       void goFwd(float phi, int dist);
        void moveFwdLeft(int);
        void moveSquare();
        void rotateLeft();

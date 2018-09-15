@@ -30,6 +30,7 @@ void setup() {
   imuSensor.bno.setExtCrystalUse(true);
   imuSensor.bno.begin();
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  display.display();
 
   Serial.println("VL53L1X Qwiic Test");
 
@@ -72,6 +73,7 @@ motor3.forward(100);
 motor4.forward(100);
 
 
+<<<<<<< HEAD
   display.clearDisplay();
   display.setTextSize(2);
   display.setTextColor(WHITE);
@@ -133,6 +135,8 @@ motor4.forward(100);
   //delay(2000);
 
   //sensors.printAll();
+=======
+>>>>>>> f364060b61e71f3ebaaf8f00b6ef6ede7d82afc7
   float phi = imuSensor.getPhi();
   float distance = distanceSensor.getDistance();
   Serial.print("phi");
@@ -140,6 +144,7 @@ motor4.forward(100);
   Serial.print("distance=");
   Serial.println(distance);
 
+<<<<<<< HEAD
   //  float phi = imuSensor.getPhi();
   // myNavigate.moveSquare();
   //  //myRobot.forwards(200);
@@ -160,5 +165,131 @@ motor4.forward(100);
   //  display.clearDisplay();
 
   // Serial.println(phi);
+=======
+//myRobot.align(45);
+//}
 
-}
+  
+  for (int i = 0; i < 100; i++) {
+
+    switch (i) {
+      case 0:
+        myRobot.align(315);
+        delay(1000);
+        break;
+      case 1:
+        myRobot.align(225);
+        delay(1000);
+        break;
+      case 2:
+        myRobot.align(135);
+        delay(1000);
+        break;
+      case 3:
+        myRobot.align(45);
+        delay(1000);
+        break;
+      default:
+        myRobot.stopp();
+    }
+  }}
+
+
+
+
+
+    //  myRobot.align(180);
+
+    //  float phi = imuSensor.getPhi();
+    //  float distance = distanceSensor.getDistance();
+    //  Serial.print("phi");
+    //  Serial.println(imuSensor.getPhi());
+    //  Serial.print("distance=");
+    //  Serial.println(distance);
+
+    //  display.clearDisplay();
+    //  display.setTextSize(2);
+    //  display.setTextColor(WHITE);
+    //  display.setCursor(0,0);
+    //  display.print("Hello John");
+    //  display.setCursor(0,20);
+    //  display.print(imuSensor.getPhi());
+    //  display.setCursor(0,40);
+    //  display.print(distanceSensor.getDistance());
+    //  display.display();
+
+    //  myRobot.align(0);
+    //  Serial.print("level =");
+    //  Serial.println(1);
+    //  delay(2000);
+    //
+    //  myRobot.align(90);
+    //  Serial.print("level =");
+    //  Serial.println(2);
+    //  delay(2000);
+    //
+    //  myRobot.align(180);
+    //  Serial.print("level =");
+    //  Serial.println(3);
+    //  delay(2000);
+    //
+    //  myRobot.align(270);
+    //  Serial.print("level =");
+    //  Serial.println(4);
+    //  delay(2000);
+    //
+    //  myRobot.align(0);
+    //  Serial.print("level =");
+    //  Serial.println(5);
+    //  delay(2000);
+    //
+    //  myRobot.align(270);
+    //  Serial.print("level =");
+    //  Serial.println(6);
+    //  delay(2000);
+    //
+    //  myRobot.align(180);
+    //  Serial.print("level =");
+    //  Serial.println(7);
+    //  delay(2000);
+    //
+    //  myRobot.align(90);
+    //  Serial.print("level =");
+    //  Serial.println(8);
+    //  delay(2000);
+    //
+    //  myRobot.align(0);
+    //  Serial.print("level =");
+    //  Serial.println(9);
+    //  delay(2000);
+
+
+    //myNavigate.moveAll();
+    //delay(2000);
+
+    //sensors.printAll();
+
+
+    //  float phi = imuSensor.getPhi();
+    // myNavigate.moveSquare();
+    //  //myRobot.forwards(200);
+
+    //  display.clearDisplay();
+    //  display.setTextSize(2);
+    //  display.setTextColor(WHITE);
+    //  display.setCursor(0, 0);
+    //
+    //  display.println("test");
+    //  display.display();
+    //  display.setCursor(0, 20);
+    //  display.print(sensors.getDistanceFront());
+    //  display.setCursor(0, 40);
+    //  //display.print(x);
+
+    //  //delay(100);
+    //  display.clearDisplay();
+
+    // Serial.println(phi);
+
+>>>>>>> f364060b61e71f3ebaaf8f00b6ef6ede7d82afc7
+
