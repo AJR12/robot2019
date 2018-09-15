@@ -3,17 +3,18 @@
 #include "Imu.h"
 
 
+
 Navigate::Navigate(robot robotic, DistanceClass robSensors, Imu phiSensor) {
 
   myRobot = robotic;
   mySensors = robSensors;
   imuSensor = phiSensor;
 
-
-
 }
 
-void goFwd(float phi, int dist){
+
+
+void Navigate::goFwd(float phi, int dist) {
   myRobot.align(phi);
 }
 
