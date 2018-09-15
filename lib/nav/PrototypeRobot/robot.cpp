@@ -23,6 +23,8 @@ robot::robot(Motor m1, Motor m2, Motor m3, Motor m4, int Max, Imu imuSensor ) {
 
 void robot::align(int theta) {
 
+  int navCase;
+
   int a = theta - 23;
   float phi = imuSensor.getPhi();
   Serial.print("a =");
@@ -30,76 +32,58 @@ void robot::align(int theta) {
   Serial.print("phi =");
   Serial.println(phi);
 
+
+
   if (theta <= 180) { //theta <= 180
+    if ((phi <= theta + 180) && (phi > theta)) {    //phi is b/t theta and (theta + 180)
+      Serial.println("This is really bad ------------------------------------------------------------------------>");
+      navCase = 0;
 
-    Serial.println("test 1 a <= 180");
+      //      phi = imuSensor.getPhi();
+      //      while (phi - a < .1) {
+      //        rotateRight(100);
+      //        phi = imuSensor.getPhi();
+      //      }
+      //      stopp();
+      //      return;
+    } 
+    
+    else if ((phi < theta)) {  //theta > phi >= 0
 
-    if ((phi <= theta + 180) && (phi > theta)) {    //phi is b/t a and (a+180)
-
-      Serial.println("test 2 phi is b/t a and (a+180)");
-      Serial.print("abs(phi - a)=");
-      Serial.println(abs(phi - a));
-      phi = imuSensor.getPhi();
-      while (phi - a < .1) {
-        Serial.println("test 3 rotateRight to correct");
-        Serial.print("phi =");
-        Serial.println(phi);
-        rotateRight(100);
-        phi = imuSensor.getPhi();
-
-      }
-      stopp();
-      return;
-      Serial.println("test 4 exited rotateRight loop");
-      Serial.print("phi =");
-      Serial.println(phi);
-    } else if ((phi < theta)) {  //phi is < a but > 180
-    Serial.println("test 5 phi < a or > (a+180)");
-      Serial.print("phi =");
-      Serial.println(phi);
-      while (phi - a < .1) {
-        Serial.println("test 6 rotating left");
-        Serial.print("phi =");
-        Serial.println(phi);
-        Serial.print("a =");
-        Serial.println(a);
-        rotateLeft(100);
-        phi = imuSensor.getPhi();
-      }
-   
-    } else if (phi > theta + 180) {
-      float b = abs(phi - theta);
-      Serial.print("b = abs(phi - a) =");
-      Serial.println(b);
-      while (b > 5) {
-        Serial.println("test 7 rotating left; phi > theta + 180");
-        Serial.print("phi =");
-        Serial.println(phi);
-        Serial.print("a =");
-        Serial.println(a);
-        Serial.print("b =");
-        Serial.println(b);
-        rotateLeft(100);
-        phi = imuSensor.getPhi();
-        b = abs(phi - a);
+      navCase = 1;
+      //                  while (phi - a < .1) {
+      //        rotateLeft(100);
+      //        phi = imuSensor.getPhi();
     }
-    }
-       Serial.println("test 7 exit while loop-------------------------------------------------------------------------->");
-      Serial.print("phi - a =");
-      Serial.println(phi - a);
-      stopp();
-      return;
-  } else {    //theta > 180
-    if ((phi > a - 180) && (phi < a)) {   //phi < a but > (a-180)
-      while (phi - a < .1) {
-        rotateLeft(100);
-        phi = imuSensor.getPhi();
 
-      }
-      stopp();
-      return;
-    }
-    if ((phi > a) || (phi <= a - 180)) { //phi > a but < (a-180)
+   else if (phi > theta + 180) { // theta + 180  < phi < 360
+
+    navCase = 2;
+
+    //      float b = abs(phi - theta);
+    //      while (b > 5) {
+    //        rotateLeft(100);
+    //        phi = imuSensor.getPhi();
+    //        b = abs(phi - a);
+    //      }
+
+    //    stopp();
+    //    return;
+  }
+  }
+  else {    //theta > 180
+    if ((phi > theta - 180) && (phi < theta)) {   //phi < a but > (a-180)
+      navCase = 3;
+      //      while (phi - a < .1) {
+      //        rotateLeft(100);
+      //        phi = imuSensor.getPhi();
+      //
+      //      }
+      //      stopp();
+      //      return;
+    } else if (phi > theta) { //phi > a but < (a-180)
+      navCase = 4;
+
       while (phi - a > .1) {
         rotateRight(100);
         phi = imuSensor.getPhi();
@@ -107,11 +91,97 @@ void robot::align(int theta) {
       }
       stopp();
       return;
+    } else if (phi <= theta - 180) {
+      //        while (abs(phi - a) > 5) {
+      //        rotateRight(100);
+      //        phi = imuSensor.getPhi();
+      //      }
+      //      stopp();
     }
   }
   stopp();
   Serial.println("test 6 stopped. exit align");
+
+
+  switch (navCase) {
+
+    case 0:
+
+      Serial.println("case = 0");
+      Serial.print("phi = ");
+      Serial.println(imuSensor.getPhi());
+      Serial.print("theta = ");
+      Serial.println(theta);
+      while (phi - a < .1) {
+        rotateRight(100);
+        phi = imuSensor.getPhi();
+      }
+      stopp();
+      break;
+
+    case 1:
+
+      Serial.println("case = 1");
+      Serial.print("phi");
+      Serial.println(imuSensor.getPhi());
+      Serial.print("theta = ");
+      Serial.println(theta);
+      while (phi - a < .1) {
+        rotateLeft(100);
+        phi = imuSensor.getPhi();
+      }
+      stopp();
+      break;
+
+    case 2:
+
+      Serial.println("case = 2");
+      Serial.print("phi");
+      Serial.println(imuSensor.getPhi());
+      Serial.print("theta = ");
+      Serial.println(theta);
+      while (abs(phi - theta) > 5) {
+        rotateLeft(100);
+        phi = imuSensor.getPhi();
+      }
+      stopp();
+      break;
+
+    case 3:
+
+      Serial.println("case = 3");
+      Serial.print("phi");
+      Serial.println(imuSensor.getPhi());
+      Serial.print("theta = ");
+      Serial.println(theta);
+
+      while (phi - a < .1) {
+        rotateLeft(100);
+        phi = imuSensor.getPhi();
+      }
+      stopp();
+      break;
+
+    case 4:
+
+      Serial.println("case = 4");
+      Serial.print("phi");
+      Serial.println(imuSensor.getPhi());
+      Serial.print("theta = ");
+      Serial.println(theta);
+      while (abs(phi - a) > 5) {
+        rotateRight(100);
+        phi = imuSensor.getPhi();
+      }
+      stopp();
+      break;
+
+    default:
+      stopp();
+  }
+  return;
 }
+
 
 
 
