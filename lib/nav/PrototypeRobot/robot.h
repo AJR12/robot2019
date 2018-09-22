@@ -11,6 +11,7 @@ class robot
     robot(Motor motor1, Motor motor2, Motor motor3, Motor motor4, int Max, Imu);
     void align(int);
     void forwards(int,int);
+    void forwardAbdul(int,int);
     void backwards(int);
     void stopp();
     void right(int);

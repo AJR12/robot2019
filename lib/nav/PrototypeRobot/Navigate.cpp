@@ -13,7 +13,7 @@ Navigate::Navigate(robot robotic, DistanceClass robSensors, Imu phiSensor) {
 
 }
 
-void goFwd(float phi, int dist){
+void Navigate::goFwd(float phi, int dist){
   myRobot.align(phi);
 }
 

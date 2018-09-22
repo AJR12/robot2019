@@ -195,6 +195,15 @@ void robot::backwards(int pwm) {
   _M3.backward(pwm);
   _M4.backward(pwm);
 }
+// This method created by Abdul and it has to use PID Controler to make the robot move straight.
+
+void robot::forwardAbdul(int pwm1,int pwm2) {
+  
+  _M1.forward(pwm1);
+  _M2.forward(pwm2);
+  _M3.forward(pwm2);
+  _M4.forward(pwm1);
+}
 void robot::right(int pwm) {
   _M1.backward(pwm);
   _M2.forward(pwm);
