@@ -23,11 +23,7 @@ int DistanceSensor::getDistance() {
   {
     distance = 60;
   }
-  //Serial.print(distance);
-  //Serial.println(" cm"); 
   delay(200);
-  //pulseIn(echoPin, HIGH);
-
   return distance;
 
 }

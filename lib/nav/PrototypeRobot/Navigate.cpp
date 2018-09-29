@@ -1,6 +1,7 @@
-#include "Arduino.h"
+//#include "Arduino.h"
 #include "Navigate.h"
-#include "Imu.h"
+//#include "Imu.h"
+
 
 
 Navigate::Navigate(robot robotic, DistanceClass robSensors, Imu phiSensor) {
@@ -9,13 +10,10 @@ Navigate::Navigate(robot robotic, DistanceClass robSensors, Imu phiSensor) {
   mySensors = robSensors;
   imuSensor = phiSensor;
 
-
-
 }
 
-void Navigate::goFwd(float phi, int dist){
-  myRobot.align(phi);
-}
+
+
 
 
 

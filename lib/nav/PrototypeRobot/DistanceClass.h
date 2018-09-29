@@ -1,7 +1,7 @@
 #ifndef DistanceClass_h
-#include "DistanceSensor.h"
 #define DistanceClass_h
 
+#include "DistanceSensor.h"
 
 class DistanceClass
 {

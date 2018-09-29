@@ -8,30 +8,23 @@ class robot
 {
   public:
     robot();
-    robot(Motor motor1, Motor motor2, Motor motor3, Motor motor4, int Max);
-    void align(int);
-    void forwards(int, int);
-    void forwardAbdul(int, int);
+    robot(Motor motor1, Motor motor2, Motor motor3, Motor motor4, int Max, Imu);
+    void forwards(int);
     void backwards(int);
     void stopp();
     void right(int);
-    void moveInCircular(int );
     void rotateRight(int);
     void rotateLeft(int);
     void left(int);
     void diagonalLeftUp(int);
     void diagonalRightUp(int);
-    void rightWheels(int);
-    void leftWheels(int);
-    void moveInCircle(double);
-    void updateError();
-    double wrap(double val, double min, double max);
-    void initialize();
-    double angle ;
-    double error ;
-    double desireAngle;
+    void goStraightTo(int desire);
+    void goInCircle(double increase);
+   
   private:
-    moveInCircular1 (int, int);
+   void forwardAbdul(int , int) ;
+   double wrap(double val, double min, double max) ;
+    
     Motor _M1;
     Motor _M2;
     Motor _M3;
@@ -39,8 +32,9 @@ class robot
     Imu imuSensor;
     int maxSpeed;
     float phi;
-    
-
+    double angle;
+    double error = 0;
+    double setPoint = 90;
 
 
 

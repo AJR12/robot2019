@@ -22,7 +22,7 @@ float Imu::getPhi()
   if (x == 360.00){
     x=0;
   }
-  delay(10);  
+  delay(BNO055_SAMPLERATE_DELAY_MS);  
   return x;
 }
 

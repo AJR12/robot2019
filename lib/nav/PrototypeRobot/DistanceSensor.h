@@ -1,7 +1,7 @@
-#include "Arduino.h"
+
 #ifndef DistanceSensor_h
 #define DistanceSensor_h
-
+#include "Arduino.h"
 
 
 class DistanceSensor {

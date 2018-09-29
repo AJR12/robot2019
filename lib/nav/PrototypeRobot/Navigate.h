@@ -9,11 +9,7 @@ class Navigate
 {
   public:
        Navigate();
-       Navigate(robot,DistanceClass,Imu);
-       void goFwd(float phi, int dist);
-       void moveFwdLeft(int);
-       void moveSquare();
-       void rotateLeft();
+       Navigate(robot,DistanceClass,Imu);  
 
        
 
@@ -21,9 +17,6 @@ class Navigate
       robot myRobot;
       DistanceClass mySensors;
       Imu imuSensor;
-      float phi;
-      int a;
-      int counter = 1;
 
       
 
