@@ -14,12 +14,12 @@
 Adafruit_SSD1306 display(OLED_RESET);
 uint8_t longRange = 2;//range for distance sensor up to 4m
 
-Motor motor1(3, 24, 25);
-Motor motor2(4, 28, 29);
-Motor motor3(5, 32, 33);
-Motor motor4(6, 36, 37);
+Motor motor1(4, 22, 26);
+Motor motor2(5, 34, 30);
+Motor motor3(6, 38, 42);
+Motor motor4(7, 52, 48);
 DistanceClass sensors(31, 33, 41, 39, 37, 35, 42, 43);
-VL53L1X distanceSensor; //laser sensor object
+VL53L1X distanceSensor; //laser sensor object6
 Imu imuSensor;
 robot myRobot(motor1, motor2, motor3, motor4, 255, imuSensor); //robot(motor1, motor2, motor3, motor4, MaxSpeed)
 Navigate myNavigate(myRobot, sensors, imuSensor);
@@ -47,41 +47,45 @@ void loop() {
 
   //  float phi = imuSensor.getPhi();
   //  float distance = distanceSensor.getDistance();
+  Serial.println("Hello World");
   Serial.print("phi");
   Serial.println(imuSensor.getPhi());
   //  Serial.print("distance=");
   //  Serial.println(distance);
 
+
+myRobot.forwards(150);
+
   //myRobot.align(45);
   //}
 
 
-  for (int i = 0; i < 100; i++) {
-
-    switch (i % 4) {
-      case 0:
-        myRobot.align(45);
-        delay(1000);
-        break;
-      case 1:
-        myRobot.align(135);
-        delay(1000);
-        break;
-      case 2:
-        myRobot.align(225);
-        delay(1000);
-        break;
-      case 3:
-        Serial.println("Entering case 3 in Main");
-        myRobot.align(315);
-        Serial.println("Left case 3 in Main");
-        delay(1000);
-
-        break;
-      default:
-        myRobot.stopp();
-    }
-  }
+//  for (int i = 0; i < 100; i++) {
+//
+//    switch (i % 4) {
+//      case 0:
+//        myRobot.align(45);
+//        delay(1000);
+//        break;
+//      case 1:
+//        myRobot.align(135);
+//        delay(1000);
+//        break;
+//      case 2:
+//        myRobot.align(225);
+//        delay(1000);
+//        break;
+//      case 3:
+//        Serial.println("Entering case 3 in Main");
+//        myRobot.align(315);
+//        Serial.println("Left case 3 in Main");
+//        delay(1000);
+//
+//        break;
+//      default:
+//        myRobot.stopp();
+//    }
+//  }
 }
 
 
