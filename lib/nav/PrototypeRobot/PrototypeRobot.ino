@@ -45,44 +45,45 @@ void setup() {
 
 void loop() {
 
-  //  float phi = imuSensor.getPhi();
-  //  float distance = distanceSensor.getDistance();
-  Serial.print("phi");
+    float phi = imuSensor.getPhi();
+    float distance = distanceSensor.getDistance();
+  Serial.print("phi"); 
   Serial.println(imuSensor.getPhi());
-  //  Serial.print("distance=");
-  //  Serial.println(distance);
-
+    Serial.print("distance=");
+    Serial.println(distance);
+  myRobot.forwards(100);
+}
   //myRobot.align(45);
   //}
 
 
-  for (int i = 0; i < 100; i++) {
-
-    switch (i % 4) {
-      case 0:
-        myRobot.align(45);
-        delay(1000);
-        break;
-      case 1:
-        myRobot.align(135);
-        delay(1000);
-        break;
-      case 2:
-        myRobot.align(225);
-        delay(1000);
-        break;
-      case 3:
-        Serial.println("Entering case 3 in Main");
-        myRobot.align(315);
-        Serial.println("Left case 3 in Main");
-        delay(1000);
-
-        break;
-      default:
-        myRobot.stopp();
-    }
-  }
-}
+//  for (int i = 0; i < 100; i++) {
+//
+//    switch (i % 4) {
+//      case 0:
+//        myRobot.align(45);
+//        delay(1000);
+//        break;
+//      case 1:
+//        myRobot.align(135);
+//        delay(1000);
+//        break;
+//      case 2:
+//        myRobot.align(225);
+//        delay(1000);
+//        break;
+//      case 3:
+//        Serial.println("Entering case 3 in Main");
+//        myRobot.align(315);
+//        Serial.println("Left case 3 in Main");
+//        delay(1000);
+//
+//        break;
+//      default:
+//        myRobot.stopp();
+//    }
+//  }
+//}
 
 
 
