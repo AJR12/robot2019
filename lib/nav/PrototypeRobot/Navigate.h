@@ -2,14 +2,14 @@
 #define Navigate_h
 #include "Arduino.h"
 #include "robot.h"
-#include "DistanceClass.h"
+//#include "DistanceClass.h"
 #include "Imu.h"
 
 class Navigate 
 {
   public:
        Navigate();
-       Navigate(robot,DistanceClass,Imu);
+//        Navigate(robot,DistanceClass,Imu);
        void goFwd(float phi, int dist);
        void moveFwdLeft(int);
        void moveSquare();
@@ -19,7 +19,7 @@ class Navigate
 
   private:
       robot myRobot;
-      DistanceClass mySensors;
+//      DistanceClass mySensors;
       Imu imuSensor;
       float phi;
       int a;

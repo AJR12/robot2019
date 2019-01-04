@@ -2,7 +2,7 @@
 #include "laser_ds.h"
 #include <Wire.h>
 
-Lasers lasers(13, 12,11,10);
+Lasers lasers(13, 12, 11, 10);
 
 void setup() {
   // put your setup code here, to run once:
@@ -14,13 +14,20 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  int sensF = lasers.sensF();
-  int sensB = lasers.sensB();
-  Serial.print("sensF = ");
-  Serial.println(sensF);
-    Serial.print("sensB = ");
-  Serial.println(sensB);
-  delay(1000);
+  
+  int disF = lasers.sensF();
+  int disB = lasers.sensB();
+  int disL = lasers.sensL();
+  int disR = lasers.sensR();
+  
+  Serial.print("disF = ");
+  Serial.println(disF);
+  Serial.print("disB = ");
+  Serial.println(disB);
+  Serial.print("disL = ");
+  Serial.println(disL);
+  Serial.print("disR = ");
+  Serial.println(disR);
+  delay(500);
 
 }

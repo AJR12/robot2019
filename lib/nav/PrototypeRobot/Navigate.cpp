@@ -4,24 +4,24 @@
 
 
 
-Navigate::Navigate(robot robotic, DistanceClass robSensors, Imu phiSensor) {
-
-  myRobot = robotic;
-  mySensors = robSensors;
-  imuSensor = phiSensor;
-
-}
-
-
-
-void Navigate::goFwd(float phi, int dist) {
-  myRobot.align(phi);
-}
-
-
-
-
-
+//Navigate::Navigate(robot robotic, Imu phiSensor) {
+//
+//  myRobot = robotic;
+////  mySensors = robSensors;
+//  imuSensor = phiSensor;
+//
+//}
+//
+//
+//
+//void Navigate::goFwd(float phi, int dist) {
+//  myRobot.align(phi);
+//}
+//
+//
+//
+//
+//
 
 
 

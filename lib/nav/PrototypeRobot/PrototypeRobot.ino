@@ -1,57 +1,68 @@
-#include <vl53l1_register_map.h>
-#include <SparkFun_VL53L1X_Arduino_Library.h>
-
 #include "Arduino.h"
+#include <Wire.h>
+#include "laser_ds.h"
 #include "robot.h"
-#include "DistanceClass.h"
 #include "Navigate.h"
 #include "Imu.h"
-#include <Wire.h>
+
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
-uint8_t longRange = 2;//range for distance sensor up to 4m
 
-Motor motor1(3, 24, 25);
-Motor motor2(4, 28, 29);
-Motor motor3(5, 32, 33);
-Motor motor4(6, 36, 37);
-DistanceClass sensors(31, 33, 41, 39, 37, 35, 42, 43);
-VL53L1X distanceSensor; //laser sensor object
+Lasers lasers(13, 12, 11, 10);
 Imu imuSensor;
-robot myRobot(motor1, motor2, motor3, motor4, 255, imuSensor); //robot(motor1, motor2, motor3, motor4, MaxSpeed)
-Navigate myNavigate(myRobot, sensors, imuSensor);
+
+
+//Motor motor1(3, 24, 25);
+//Motor motor2(4, 28, 29);
+//Motor motor3(5, 32, 33);
+//Motor motor4(6, 36, 37);
+//robot myRobot(motor1, motor2, motor3, motor4, 255, imuSensor); //robot(motor1, motor2, motor3, motor4, MaxSpeed)
+
 
 
 void setup() {
+    Wire.begin();
   Serial.begin(9600);
+
+  Serial.println("HELLO!!!");
+  lasers.setAddy();
+  lasers.i2cScan();
+  
   imuSensor.bno.setExtCrystalUse(true);
   imuSensor.bno.begin();
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   display.display();
-
-  Serial.println("VL53L1X Qwiic Test");
-
-  if (distanceSensor.begin() == false)
-  {
-    Serial.println("Sensor offline!");
-  }
-  distanceSensor.setDistanceMode(longRange);
 
 
 }
 
 void loop() {
 
-    float phi = imuSensor.getPhi();
-    float distance = distanceSensor.getDistance();
-  Serial.print("phi"); 
-  Serial.println(imuSensor.getPhi());
-    Serial.print("distance=");
-    Serial.println(distance);
-  myRobot.forwards(100);
+  int disF = lasers.sensF();
+  int disB = lasers.sensB();
+  int disL = lasers.sensL();
+  int disR = lasers.sensR();
+  
+  Serial.print("disF = ");
+  Serial.println(disF);
+  Serial.print("disB = ");
+  Serial.println(disB);
+  Serial.print("disL = ");
+  Serial.println(disL);
+  Serial.print("disR = ");
+  Serial.println(disR);
+  delay(500);
+  
+//
+//    float phi = imuSensor.getPhi();
+//  Serial.print("phi"); 
+//  Serial.println(imuSensor.getPhi());
+//    Serial.print("distance=");
+////    Serial.println(distance);
+//  myRobot.forwards(100);
 }
   //myRobot.align(45);
   //}
