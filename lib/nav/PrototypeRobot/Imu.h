@@ -1,19 +1,15 @@
-#ifndef Imu_h
-#define Imu_h
-#include "Arduino.h"
-#include <Wire.h>
-#include <Adafruit_Sensor.h>
-#include <Adafruit_BNO055.h>
-#include <utility/imumaths.h>
+#ifndef IMU_h
+#define IMU_h
 
-class Imu
-{
+class Imu {
+
   public:
-    Imu();
+    //  Constructor (if needed in future)
+    // Imu();
+
+    //  Methods
+    void start();
     float getPhi();
-    
-    void getInfo();
-    Adafruit_BNO055 bno = Adafruit_BNO055(55);
 };
 
 #endif

@@ -3,7 +3,10 @@
 #include "laser_ds.h"
 #include "robot.h"
 #include "Navigate.h"
-#include "Imu.h"
+#include "imu.h"
+
+Lasers lasers(13, 12, 11, 10);
+Imu imu;
 
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
@@ -11,8 +14,8 @@
 #define OLED_RESET 4
 Adafruit_SSD1306 display(OLED_RESET);
 
-Lasers lasers(13, 12, 11, 10);
-Imu imuSensor;
+
+
 
 
 //Motor motor1(3, 24, 25);
@@ -24,17 +27,20 @@ Imu imuSensor;
 
 
 void setup() {
-    Wire.begin();
+  Wire.begin();
   Serial.begin(9600);
 
+  //  Init Lasers dist sensors
   Serial.println("HELLO!!!");
   lasers.setAddy();
   lasers.i2cScan();
-  
-  imuSensor.bno.setExtCrystalUse(true);
-  imuSensor.bno.begin();
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-  display.display();
+
+  //  Init IMU
+  imu.start();
+
+
+  //  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  //  display.display();
 
 
 }
@@ -45,7 +51,7 @@ void loop() {
   int disB = lasers.sensB();
   int disL = lasers.sensL();
   int disR = lasers.sensR();
-  
+
   Serial.print("disF = ");
   Serial.println(disF);
   Serial.print("disB = ");
@@ -54,18 +60,26 @@ void loop() {
   Serial.println(disL);
   Serial.print("disR = ");
   Serial.println(disR);
+
+  float phi = imu.getPhi();
+  Serial.print("phi = ");
+  Serial.println(phi);
+
   delay(500);
-  
-//
-//    float phi = imuSensor.getPhi();
-//  Serial.print("phi"); 
-//  Serial.println(imuSensor.getPhi());
-//    Serial.print("distance=");
-////    Serial.println(distance);
-//  myRobot.forwards(100);
+
+
+
+
+  //
+  //    float phi = imuSensor.getPhi();
+  //  Serial.print("phi");
+  //  Serial.println(imuSensor.getPhi());
+  //    Serial.print("distance=");
+  ////    Serial.println(distance);
+  //  myRobot.forwards(100);
 }
-  //myRobot.align(45);
-  //}
+//myRobot.align(45);
+//}
 
 
 //  for (int i = 0; i < 100; i++) {

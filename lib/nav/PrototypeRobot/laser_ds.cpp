@@ -49,7 +49,7 @@ void Lasers::setAddy() {
   sensor3.init(true);
   Serial.println("05");
   delay(100);
-  sensor3.setAddress((uint8_t)40);
+  sensor3.setAddress((uint8_t)42);
   Serial.println("06");
 
   pinMode(_pinR, INPUT);

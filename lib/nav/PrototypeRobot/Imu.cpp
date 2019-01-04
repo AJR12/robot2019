@@ -1,28 +1,49 @@
-#include "Arduino.h"
-#include "Imu.h"
-#include <Wire.h>
+#include "imu.h"
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BNO055.h>
 #include <utility/imumaths.h>
-#define BNO055_SAMPLERATE_DELAY_MS (100)
+Adafruit_BNO055 bno = Adafruit_BNO055(55);
 
 
-Imu::Imu() {}
 
-void Imu::getInfo()
-{
-  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-  delay(BNO055_SAMPLERATE_DELAY_MS);
-}
+//Imu::Imu() {
+//  //Constructor if needed in the future
+//}
 
-float Imu::getPhi()
-{
-  imu::Vector<3> euler = bno.getVector(Adafruit_BNO055::VECTOR_EULER);
-  float x = 360 - euler.x();
-  if (x == 360.00){
-    x=0;
+void Imu::start() {
+  Serial.println("IMU Sensor Test");
+
+  /* Initialise the sensor */
+  if (!bno.begin())
+  {
+    /* There was a problem detecting the BNO055 ... check your connections */
+    Serial.print("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+    while (1);
+  } else{
+    Serial.println("IMU Test PASSED");
   }
-  delay(BNO055_SAMPLERATE_DELAY_MS);  
-  return x;
+
+  delay(1000);
+  bno.setExtCrystalUse(true);
 }
 
+float Imu::getPhi() {
+
+  //Get a new sensor event
+  sensors_event_t event;
+  bno.getEvent(&event);
+
+  //Get phi
+  float phi = event.orientation.x;
+  return phi;
+}
+
+/* For more axis use :
+
+  Serial.print("\tY: ");
+  Serial.print(event.orientation.y, 4);
+  Serial.print("\tZ: ");
+  Serial.print(event.orientation.z, 4);
+  Serial.println("");
+
+*/

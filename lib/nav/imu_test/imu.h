@@ -1,5 +1,5 @@
-#ifndef IMU_sen
-#define IMU_sen
+#ifndef IMU_h
+#define IMU_h
 
 class Imu {
 
