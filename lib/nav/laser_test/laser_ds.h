@@ -1,6 +1,6 @@
 #ifndef LDS
 #define LDS
-#include "Arduino.h"
+//#include "Arduino.h"
 
 
 class Lasers {

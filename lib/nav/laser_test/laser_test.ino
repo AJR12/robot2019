@@ -7,7 +7,7 @@ Lasers lasers(13, 12, 11, 10);
 void setup() {
   // put your setup code here, to run once:
   Wire.begin();
-  Serial.begin (115200);
+  Serial.begin (9600);
   Serial.println("HELLO!!!");
   lasers.setAddy();
   lasers.i2cScan();
