@@ -60,6 +60,16 @@ void Lasers::setAddy() {
   sensor4.setAddress((uint8_t)41);
   Serial.println("08");
 
+  sensor.setTimeout(500);
+  sensor2.setTimeout(500);
+  sensor3.setTimeout(500);
+  sensor4.setTimeout(500);
+
+  sensor.startContinuous(50);
+  sensor2.startContinuous(50);
+  sensor3.startContinuous(50);
+  sensor4.startContinuous(50);
+
   Serial.println("addresses set");
 }
 
@@ -87,15 +97,6 @@ void Lasers::i2cScan() {
   Serial.print (count, DEC);
   Serial.println (" device(s).");
 
-  sensor.setTimeout(500);
-  sensor2.setTimeout(500);
-  sensor3.setTimeout(500);
-  sensor4.setTimeout(500);
-
-  sensor.startContinuous(50);
-  sensor2.startContinuous(50);
-  sensor3.startContinuous(50);
-  sensor4.startContinuous(50);
 }
 
 int Lasers::sensF() {

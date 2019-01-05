@@ -2,7 +2,6 @@
 #define Navigate_h
 #include "Arduino.h"
 #include "robot.h"
-//#include "DistanceClass.h"
 #include "Imu.h"
 
 class Navigate 

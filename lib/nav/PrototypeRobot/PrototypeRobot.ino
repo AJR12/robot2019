@@ -1,20 +1,15 @@
 #include "Arduino.h"
 #include <Wire.h>
 #include "laser_ds.h"
+#include "imu.h"
+#include "oled.h"
+
 #include "robot.h"
 #include "Navigate.h"
-#include "imu.h"
 
-Lasers lasers(13, 12, 11, 10);
+Lasers lasers(13, 12, 11, 10); // (F, B, L, R)
 Imu imu;
-
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-
-#define OLED_RESET 4
-Adafruit_SSD1306 display(OLED_RESET);
-
-
+Oled oled;
 
 
 
@@ -38,9 +33,8 @@ void setup() {
   //  Init IMU
   imu.start();
 
-
-  //  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
-  //  display.display();
+  //Init Oled
+  oled.start();
 
 
 }
@@ -65,8 +59,9 @@ void loop() {
   Serial.print("phi = ");
   Serial.println(phi);
 
-  delay(500);
+//  delay(500);
 
+oled.dispAll(phi, disF, disB, disL, disR);
 
 
 

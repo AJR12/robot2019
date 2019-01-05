@@ -10,9 +10,18 @@ void setup(void)
 
 void loop(void)
 {
+  
 float phi = imu.getPhi();
-Serial.print("phi = ");
+Serial.print("phi = %f");
 Serial.println(phi);
 }
 
+/* For more axis use :
 
+  Serial.print("\tY: ");
+  Serial.print(event.orientation.y, 4);
+  Serial.print("\tZ: ");
+  Serial.print(event.orientation.z, 4);
+  Serial.println("");
+
+*/
