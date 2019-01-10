@@ -12,6 +12,7 @@ class Motor {
     void forward(int pwmSpeed);
     void backward(int pwmSpeed);
     void stp();
+    int test();
 
   private:
 
