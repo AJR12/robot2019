@@ -13,10 +13,10 @@ Oled oled;
 
 
 
-//Motor motor1(3, 24, 25);
-//Motor motor2(4, 28, 29);
-//Motor motor3(5, 32, 33);
-//Motor motor4(6, 36, 37);
+Motor motor1(7, 24, 25);
+Motor motor2(6, 28, 29);
+Motor motor3(9, 34, 35);
+Motor motor4(8, 38, 39);
 //robot myRobot(motor1, motor2, motor3, motor4, 255, imuSensor); //robot(motor1, motor2, motor3, motor4, MaxSpeed)
 
 

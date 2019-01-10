@@ -1,8 +1,6 @@
 #include "motors_test.h"
 #include "Arduino.h"
 
-
-
 Motor::Motor(int enA, int in1, int in2) {
   _pwm = enA;
   _fwd = in1;
@@ -31,3 +29,8 @@ void Motor::stp() {
   digitalWrite(_bac, LOW);
   analogWrite(_pwm, 0);
 }
+
+int Motor::test() {
+  return _pwm;
+}
+
