@@ -85,13 +85,7 @@ void count1()
 
 }
 
-void count2()
-
-{
-
-  encoderValue2++;
-
-}
+void count2(){encoderValue2++;}
 
 
 
