@@ -3,9 +3,39 @@
 #include "laser_ds.h"
 #include "imu.h"
 #include "oled.h"
-
 #include "robot.h"
 #include "Navigate.h"
+
+// Encoder definitions
+#define ENCODER_1 19
+#define ENCODER_2 18
+#define ENCODER_3 3
+#define ENCODER_4 2
+#define ENCODEROUTPUT 1200
+int interval = 1000;
+long previousMillis = 0;
+long currentMillis = 0;
+int rpm1 = 0;
+int rpm2 = 0;
+int rpm3 = 0;
+int rpm4 = 0;
+volatile long encoderValue1 = 0;
+volatile long encoderValue2 = 0;
+volatile long encoderValue3 = 0;
+volatile long encoderValue4 = 0;
+void count1() {
+  encoderValue1++;
+}
+void count2() {
+  encoderValue2++;
+}
+void count3() {
+  encoderValue3++;
+}
+void count4() {
+  encoderValue4++;
+}
+
 
 Lasers lasers(13, 12, 11, 10); // (F, B, L, R)
 Imu imu;
@@ -36,43 +66,86 @@ void setup() {
   //Init Oled
   oled.start();
 
+  // Init Encoders
+  pinMode(ENCODER_1, INPUT);
+  pinMode(ENCODER_2, INPUT);
+  pinMode(ENCODER_3, INPUT);
+  pinMode(ENCODER_4, INPUT);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_1), count1, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_2), count2, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_3), count3, RISING);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_4), count4, RISING);
 
 }
 
 void loop() {
+
+
+  motor1.forward(255);
+  motor2.forward(255);
+  motor3.forward(255);
+  motor4.forward(255);
 
   int disF = lasers.sensF();
   int disB = lasers.sensB();
   int disL = lasers.sensL();
   int disR = lasers.sensR();
 
-  Serial.print("disF = ");
-  Serial.println(disF);
-  Serial.print("disB = ");
-  Serial.println(disB);
-  Serial.print("disL = ");
-  Serial.println(disL);
-  Serial.print("disR = ");
-  Serial.println(disR);
+//  Serial.print("disF = ");
+//  Serial.println(disF);
+//  Serial.print("disB = ");
+//  Serial.println(disB);
+//  Serial.print("disL = ");
+//  Serial.println(disL);
+//  Serial.print("disR = ");
+//  Serial.println(disR);
 
   float phi = imu.getPhi();
-  Serial.print("phi = ");
-  Serial.println(phi);
+//  Serial.print("phi = ");
+//  Serial.println(phi);
 
-//  delay(500);
+  //  delay(500);
 
-oled.dispAll(phi, disF, disB, disL, disR);
+  oled.dispAll(phi, disF, disB, disL, disR);
 
+  rpm();
 
-
-  //
-  //    float phi = imuSensor.getPhi();
-  //  Serial.print("phi");
-  //  Serial.println(imuSensor.getPhi());
-  //    Serial.print("distance=");
-  ////    Serial.println(distance);
-  //  myRobot.forwards(100);
 }
+
+void rpm() {
+
+  currentMillis = millis();
+
+  if (currentMillis - previousMillis > interval) {
+    previousMillis = millis();
+    rpm1 = (encoderValue1 * 60 / ENCODEROUTPUT);
+    rpm2 = (encoderValue2 * 60 / ENCODEROUTPUT);
+    rpm3 = (encoderValue3 * 60 / ENCODEROUTPUT);
+    rpm4 = (encoderValue4 * 60 / ENCODEROUTPUT);
+    Serial.print("RPM_1 = "); Serial.println(rpm1);
+    Serial.print("RPM_2 = "); Serial.println(rpm2);
+    Serial.print("RPM_3 = "); Serial.println(rpm3);
+    Serial.print("RPM_4 = "); Serial.println(rpm4);
+    Serial.print("Encoder Value1 = "); Serial.println(encoderValue1);
+    Serial.print("Encoder Value2 = "); Serial.println(encoderValue2);
+    Serial.print("Encoder Value3 = "); Serial.println(encoderValue3);
+    Serial.print("Encoder Value4 = "); Serial.println(encoderValue4);
+    encoderValue1 = 0;
+    encoderValue2 = 0;
+    encoderValue3 = 0;
+    encoderValue4 = 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
 //myRobot.align(45);
 //}
 

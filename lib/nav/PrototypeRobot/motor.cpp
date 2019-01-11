@@ -1,6 +1,7 @@
 #include "motor.h"
 #include "Arduino.h"
 
+#define ENCODEROUTPUT 1200
 
 
 Motor::Motor(int enA, int in1, int in2) {
