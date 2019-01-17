@@ -43,10 +43,10 @@ Oled oled;
 
 
 
-Motor motor1(7, 24, 25);
-Motor motor2(6, 28, 29);
-Motor motor3(9, 34, 35);
-Motor motor4(8, 38, 39);
+Motor motor1(44, 22, 24);
+Motor motor2(45, 26, 28);
+Motor motor3(46, 48, 50);
+Motor motor4(5, 52, 51);
 
 
 void setup() {
@@ -59,7 +59,7 @@ void setup() {
   lasers.i2cScan();
 
   //  Init IMU
-  imu.start();
+//  imu.start();
 
   //Init Oled
   oled.start();
@@ -123,10 +123,10 @@ void rpm() {
     Serial.print("RPM_2 = "); Serial.println(rpm2);
     Serial.print("RPM_3 = "); Serial.println(rpm3);
     Serial.print("RPM_4 = "); Serial.println(rpm4);
-    Serial.print("Encoder Value1 = "); Serial.println(encoderValue1);
-    Serial.print("Encoder Value2 = "); Serial.println(encoderValue2);
-    Serial.print("Encoder Value3 = "); Serial.println(encoderValue3);
-    Serial.print("Encoder Value4 = "); Serial.println(encoderValue4);
+    Serial.print("Encoder Value_1 = "); Serial.println(encoderValue1);
+    Serial.print("Encoder Value_2 = "); Serial.println(encoderValue2);
+    Serial.print("Encoder Value_3 = "); Serial.println(encoderValue3);
+    Serial.print("Encoder Value_4 = "); Serial.println(encoderValue4);
     encoderValue1 = 0;
     encoderValue2 = 0;
     encoderValue3 = 0;

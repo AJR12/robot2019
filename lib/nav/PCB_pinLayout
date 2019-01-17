@@ -1,0 +1,80 @@
+// MOTOR CONTROLLERS:
+    MC1:   //Top, by pin 22/21
+      22
+      24
+      26
+      28
+      44 //PWM
+      45 //PWM
+
+    MC2:
+      46 //PWM
+      5 //PWM
+      48
+      50
+      52
+      51
+
+// LASERS:
+    L1: // Top USB connect. From L to R
+      13
+      SCL
+      SDA
+      GRD
+      VCC
+
+    L2: // Under JP1. From L to R
+      12
+      SCL
+      SDA
+      GRD
+      VCC
+
+    L3: // Under JP2. From T to B
+      11
+      SCL
+      SDA
+      GRD
+      VCC
+
+    L4: // Left of JP3. From T to B
+      10
+      SCL
+      SDA
+      GRD
+      VCC
+
+// IMU:
+    IMU: //Left of JP4. From T to B
+      SCL
+      SDA
+      GRD
+      VCC
+
+// OLED:
+    OLED: //Left of JP5. From T to B
+      SCL
+      SDA
+      GRD
+      VCC
+
+// ENCODERS:
+    ENC1: // Top L. The rest are in order to the R
+      19
+      VCC
+      GRD
+
+    ENC2:
+      18
+      VCC
+      GRD
+
+    ENC3:
+      2
+      VCC
+      GRD
+
+    ENC4:
+      3
+      VCC
+      GRD
