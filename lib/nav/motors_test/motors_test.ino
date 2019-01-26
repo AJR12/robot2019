@@ -1,8 +1,10 @@
 #include "Arduino.h"
 #include "motors_test.h"
 
-Motor motor(11, 12, 13);
-Motor motor2(5, 6, 7);
+Motor motor(44, 22, 24);
+Motor motor2(45, 26, 28);
+Motor motor3(46, 48, 50);
+Motor motor4(5, 52, 51);
 
 
 #define ENCODEROUTPUT 1200
@@ -55,21 +57,23 @@ void setup() {
 void loop() {
   motor.forward(255);
   motor2.forward(255);
+  motor3.forward(255);
+  motor4.forward(255);
 
-  currentMillis = millis();
-
-  if (currentMillis - previousMillis > interval) {
-    previousMillis = millis();
-    rpm1 = (encoderValue1 * 60 / ENCODEROUTPUT);
-    rpm2 = (encoderValue2 * 60 / ENCODEROUTPUT);
-    Serial.print("RPM_1 = "); Serial.println(rpm1);
-    Serial.print("RPM_2 = "); Serial.println(rpm2);
-    Serial.print("Encoder Value1="); Serial.println(encoderValue1);
-    Serial.print("Encoder Value2="); Serial.println(encoderValue2);
-    encoderValue1 = 0;
-    encoderValue2 = 0;
-  }
-
+  //  currentMillis = millis();
+  //
+  //  if (currentMillis - previousMillis > interval) {
+  //    previousMillis = millis();
+  //    rpm1 = (encoderValue1 * 60 / ENCODEROUTPUT);
+  //    rpm2 = (encoderValue2 * 60 / ENCODEROUTPUT);
+  //    Serial.print("RPM_1 = "); Serial.println(rpm1);
+  //    Serial.print("RPM_2 = "); Serial.println(rpm2);
+  //    Serial.print("Encoder Value1="); Serial.println(encoderValue1);
+  //    Serial.print("Encoder Value2="); Serial.println(encoderValue2);
+  //    encoderValue1 = 0;
+  //    encoderValue2 = 0;
+  //  }
+  //
 
 
 
@@ -85,7 +89,9 @@ void count1()
 
 }
 
-void count2(){encoderValue2++;}
+void count2() {
+  encoderValue2++;
+}
 
 
 
