@@ -59,7 +59,7 @@ void setup() {
   lasers.i2cScan();
 
   //  Init IMU
-//  imu.start();
+  imu.start();
 
   //Init Oled
   oled.start();
@@ -88,25 +88,25 @@ void loop() {
   int disL = lasers.sensL();
   int disR = lasers.sensR();
 
-//  Serial.print("disF = ");
-//  Serial.println(disF);
-//  Serial.print("disB = ");
-//  Serial.println(disB);
-//  Serial.print("disL = ");
-//  Serial.println(disL);
-//  Serial.print("disR = ");
-//  Serial.println(disR);
+  Serial.print("disF = ");
+  Serial.println(disF);
+  Serial.print("disB = ");
+  Serial.println(disB);
+  Serial.print("disL = ");
+  Serial.println(disL);
+  Serial.print("disR = ");
+  Serial.println(disR);
 
   float phi = imu.getPhi();
-//  Serial.print("phi = ");
-//  Serial.println(phi);
+  Serial.print("phi = ");
+  Serial.println(phi);
+//
 
-  //  delay(500);
 
   oled.dispAll(phi, disF, disB, disL, disR);
 
   rpm();
-
+    delay(500);
 }
 
 void rpm() {
