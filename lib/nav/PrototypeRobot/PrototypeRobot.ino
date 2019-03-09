@@ -56,7 +56,7 @@ void setup()
 {
         //Initializing Arduino-Odroid Communication
         //through i2c address 8
-        Wire.begin(8);
+        Wire.begin(9);
         Wire.onReceive(receiveEvent); //register event
         Serial.begin(9600);
 
