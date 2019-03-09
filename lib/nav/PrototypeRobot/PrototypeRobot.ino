@@ -86,28 +86,28 @@ void setup()
 void loop()
 {
 
-//        int disF = lasers.sensF();
-//        int disB = lasers.sensB();
-//        int disL = lasers.sensL();
-//        int disR = lasers.sensR();
-//
-//        Serial.print("disF = ");
-//        Serial.println(disF);
-//        Serial.print("disB = ");
-//        Serial.println(disB);
-//        Serial.print("disL = ");
-//        Serial.println(disL);
-//        Serial.print("disR = ");
-//        Serial.println(disR);
-//        Serial.println("\n\n");
-//
-//        float phi = imu.getPhi();
-//        Serial.print("phi = ");
-//        Serial.println(phi);
-//
-//        delay(500);
-//
-//        oled.dispAll(phi, disF, disB, disL, disR);
+        int disF = lasers.sensF();
+        int disB = lasers.sensB();
+        int disL = lasers.sensL();
+        int disR = lasers.sensR();
+
+        Serial.print("disF = ");
+        Serial.println(disF);
+        Serial.print("disB = ");
+        Serial.println(disB);
+        Serial.print("disL = ");
+        Serial.println(disL);
+        Serial.print("disR = ");
+        Serial.println(disR);
+        Serial.println("\n\n");
+
+        float phi = imu.getPhi();
+        Serial.print("phi = ");
+        Serial.println(phi);
+
+        delay(500);
+
+        oled.dispAll(phi, disF, disB, disL, disR);
         //Wire.onReceive(receiveEvent);
         //rpm();
         delay(100);
