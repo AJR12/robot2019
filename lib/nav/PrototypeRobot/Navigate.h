@@ -17,7 +17,7 @@ class Navigate
        
 
   private:
-      robot myRobot;
+      Robot myRobot;
 //      DistanceClass mySensors;
       Imu imuSensor;
       float phi;

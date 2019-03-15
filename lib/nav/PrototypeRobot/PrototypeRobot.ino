@@ -48,6 +48,8 @@ Motor motor2(45, 26, 28);
 Motor motor3(46, 48, 50);
 Motor motor4(5, 52, 51);
 
+Robot robot(motor1, motor2, motor3, motor4, imu);
+
 
 void setup() {
   Wire.begin();
@@ -77,11 +79,13 @@ void setup() {
 }
 
 void loop() {
+  //
+  //  motor1.forward(255);
+  //  motor2.forward(255);
+  //  motor3.forward(255);
+  //  motor4.forward(255);
 
-  motor1.forward(255);
-  motor2.forward(255);
-  motor3.forward(255);
-  motor4.forward(255);
+  robot.fwd();
 
   int disF = lasers.sensF();
   int disB = lasers.sensB();
@@ -100,13 +104,13 @@ void loop() {
   float phi = imu.getPhi();
   Serial.print("phi = ");
   Serial.println(phi);
-//
+  //
 
 
   oled.dispAll(phi, disF, disB, disL, disR);
 
   rpm();
-    delay(500);
+  delay(500);
 }
 
 void rpm() {
@@ -127,6 +131,12 @@ void rpm() {
     Serial.print("Encoder Value_2 = "); Serial.println(encoderValue2);
     Serial.print("Encoder Value_3 = "); Serial.println(encoderValue3);
     Serial.print("Encoder Value_4 = "); Serial.println(encoderValue4);
+
+//Serial.println(encoderValue1);
+//Serial.println(encoderValue2);
+//Serial.println(encoderValue3);
+//Serial.println(encoderValue4);
+
     encoderValue1 = 0;
     encoderValue2 = 0;
     encoderValue3 = 0;

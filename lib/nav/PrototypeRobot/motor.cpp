@@ -3,7 +3,7 @@
 
 #define ENCODEROUTPUT 1200
 
-
+Motor::Motor(){}
 Motor::Motor(int enA, int in1, int in2) {
   _pwm = enA;
   _fwd = in1;

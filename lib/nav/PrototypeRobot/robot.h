@@ -4,37 +4,63 @@
 #include "motor.h"
 #include "Imu.h"
 
-class robot
-{
+class Robot {
+
   public:
-  robot();
-    robot(Motor motor1, Motor motor2, Motor motor3, Motor motor4, int Max, Imu);
-    void align(int);
-    void intelFwd(int, int);
-    void forwards(int);
-    void backwards(int);
-    void stopp();
-    void right(int);
-    void moveInCircular(int );
-    void rotateRight(int);
-    void rotateLeft(int);
-    void left(int);
-    void diagonalLeftUp(int);
-    void diagonalRightUp(int);
-    void rightWheels(int);
-    void leftWheels(int);
+    //  Constructor    
+    Robot(Motor m1, Motor m2, Motor m3, Motor m4, Imu imuSensor);
+
+    //  Methods
+
+    void fwd();
+    void backward(int pwmSpeed);
+    void stp();
+
   private:
-    moveInCircular1 (int, int);
     Motor _M1;
     Motor _M2;
     Motor _M3;
     Motor _M4;
-    Imu imuSensor;
-    int maxSpeed;
-    float phi;
-
 
 
 };
 
 #endif
+
+
+
+
+  
+
+//  public:
+//  robot();
+//    robot(Motor motor1, Motor motor2, Motor motor3, Motor motor4, int Max, Imu);
+//    void align(int);
+//    void intelFwd(int, int);
+//    void forwards(int);
+//    void backwards(int);
+//    void stopp();
+//    void right(int);
+//    void moveInCircular(int );
+//    void rotateRight(int);
+//    void rotateLeft(int);
+//    void left(int);
+//    void diagonalLeftUp(int);
+//    void diagonalRightUp(int);
+//    void rightWheels(int);
+//    void leftWheels(int);
+//  private:
+//    moveInCircular1 (int, int);
+//    Motor _M1;
+//    Motor _M2;
+//    Motor _M3;
+//    Motor _M4;
+//    Imu imuSensor;
+//    int maxSpeed;
+//    float phi;
+//
+//
+//
+//};
+//
+//#endif

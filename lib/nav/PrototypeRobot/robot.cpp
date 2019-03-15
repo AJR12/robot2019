@@ -1,25 +1,56 @@
-//#include "Arduino.h"
-//#include "robot.h"
-//#include "Imu.h"
+#include "Arduino.h"
+#include "robot.h"
+#include "Imu.h"
+
+
+Robot::Robot(Motor m1, Motor m2, Motor m3, Motor m4, Imu imuSensor ) {
+
+  _M1 = m1;
+  _M2 = m2;
+  _M3 = m3;
+  _M4 = m4;
+
+}
+
+void Robot::fwd() {
+  _M1.forward(240);
+  _M2.forward(255);
+  _M3.forward(195);
+  _M4.forward(175);
+}
 //
-//robot::robot() {}
-//
-//robot::robot(Motor m1, Motor m2, Motor m3, Motor m4, int Max, Imu imuSensor ) {
-//
-//  _M1 = m1;
-//  _M2 = m2;
-//  _M3 = m3;
-//  _M4 = m4;
-//
-//
-//  if (Max >= 0 && Max <= 255) {
-//    maxSpeed = Max;
-//  } else {
-//    maxSpeed = 0;
-//  }
-//
-//
+//void robot::backwards(int pwm) {
+//  _M1.backward(pwm);
+//  _M2.backward(pwm);
+//  _M3.backward(pwm);
+//  _M4.backward(pwm);
 //}
+//void robot::right(int pwm) {
+//  _M1.backward(pwm);
+//  _M2.forward(pwm);
+//  _M3.backward(pwm);
+//  _M4.forward(pwm);
+//}
+//void robot::left(int pwm) {
+//  _M1.forward(pwm);
+//  _M2.backward(pwm);
+//  _M3.forward(pwm);
+//  _M4.backward(pwm);
+//}
+//void robot::rotateRight(int pwm) {
+//  _M1.backward(pwm);
+//  _M2.forward(pwm);
+//  _M3.forward(pwm);
+//  _M4.backward(pwm);
+//}
+//void robot::rotateLeft(int pwm) {
+//  _M1.forward(pwm);
+//  _M2.backward(pwm);
+//  _M3.backward(pwm);
+//  _M4.forward(pwm);
+
+
+
 //
 //void robot::align(int theta) {
 //
@@ -279,42 +310,7 @@
 //  }
 //}
 //
-//void robot::forwards(int pwm) {
-//  _M1.forward(pwm);
-//  _M2.forward(pwm);
-//  _M3.forward(pwm);
-//  _M4.forward(pwm);
-//}
-//
-//void robot::backwards(int pwm) {
-//  _M1.backward(pwm);
-//  _M2.backward(pwm);
-//  _M3.backward(pwm);
-//  _M4.backward(pwm);
-//}
-//void robot::right(int pwm) {
-//  _M1.backward(pwm);
-//  _M2.forward(pwm);
-//  _M3.backward(pwm);
-//  _M4.forward(pwm);
-//}
-//void robot::left(int pwm) {
-//  _M1.forward(pwm);
-//  _M2.backward(pwm);
-//  _M3.forward(pwm);
-//  _M4.backward(pwm);
-//}
-//void robot::rotateRight(int pwm) {
-//  _M1.backward(pwm);
-//  _M2.forward(pwm);
-//  _M3.forward(pwm);
-//  _M4.backward(pwm);
-//}
-//void robot::rotateLeft(int pwm) {
-//  _M1.forward(pwm);
-//  _M2.backward(pwm);
-//  _M3.backward(pwm);
-//  _M4.forward(pwm);
+
 //}
 //void robot::diagonalLeftUp(int pwm) {
 //  _M1.forward(pwm);

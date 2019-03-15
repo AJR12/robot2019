@@ -6,7 +6,7 @@ class Motor {
   public:
     //  Constructor
     Motor(int enA, int in1, int in2);
-
+    Motor();
     //  Methods
     void start();
     void forward(int pwmSpeed);
